@@ -28,7 +28,11 @@ public class CarFactory {
                 break;
         }
 
-        return new Car(id, fuelWill, washWill, randomizeFuel());
+        if(fuelWill){
+            return new Car(id, true, washWill, randomizeFuel());
+        } else {
+            return new Car(id, false, true, null);
+        }
     }
 
     private static GasType randomizeFuel() {
