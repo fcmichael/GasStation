@@ -8,7 +8,7 @@ import java.util.Properties;
 public class SimProperties {
 
     private static SimProperties instance = null;
-    private Properties properties;
+    private final Properties properties;
 
     private SimProperties() {
         properties = new Properties();

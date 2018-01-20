@@ -7,7 +7,7 @@ import lombok.Getter;
 
 public class Emplacement extends BasicSimObj {
 
-    private int distributorsCount;
+    private final int distributorsCount;
     private int currentlyFuelling;
 
     @Getter

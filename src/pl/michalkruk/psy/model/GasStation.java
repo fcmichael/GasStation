@@ -4,14 +4,14 @@ import pl.michalkruk.psy.SimProperties;
 
 public class GasStation {
 
-    private static GasStation instance = new GasStation();
-    private SimProperties properties = SimProperties.getInstance();
+    private static final GasStation instance = new GasStation();
+    private final SimProperties properties = SimProperties.getInstance();
     private static Emplacement emplacementLPG;
     private static Emplacement emplacementON;
     private static Emplacement emplacementPetrol;
     private static Cash cash;
 
-    GasStation() {
+    private GasStation() {
         emplacementLPG = new Emplacement(
                 Integer.parseInt(properties.get("numOfDistributorsLPG")), Integer.parseInt(properties.get("queueSizeOfDistributorsON")));
         emplacementON = new Emplacement(

@@ -9,16 +9,25 @@ import java.util.LinkedList;
 
 public class Cash extends BasicSimObj{
 
-    private int cashesCount;
+    private final int cashesCount;
     private int currentlyPaying;
 
     @Getter
     private LinkedList<Car> cashQueue;
 
-    public Cash(int cashesCount) {
+    Cash(int cashesCount) {
         this.cashesCount = cashesCount;
         this.currentlyPaying = 0;
         this.cashQueue = new LinkedList<>();
+    }
+
+    public Car startPayment(){
+        currentlyPaying++;
+        return cashQueue.removeFirst();
+    }
+
+    public void stopPayment(){
+        currentlyPaying--;
     }
 
     public void addToQueue(Car car){

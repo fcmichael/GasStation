@@ -9,8 +9,8 @@ import pl.michalkruk.psy.model.*;
 
 public class CarArriveAtGasStation extends BasicSimEvent<Car, Object> {
 
-    public CarArriveAtGasStation(Car entity, double delay) throws SimControlException {
-        super(entity, delay);
+    public CarArriveAtGasStation(Car car, double delay) throws SimControlException {
+        super(car, delay);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class CarArriveAtGasStation extends BasicSimEvent<Car, Object> {
 
             // Aktywuj obsluge, jezeli kolejka byla pusta (gniazdo "spalo")
             if (cash.getCashQueue().size() == 1 && cash.isAvailable()) {
-                // new start paying event
+                new CarStartPaymentEvent(cash);
             }
         }
 

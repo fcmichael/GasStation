@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class SimApplication {
 
-    public static final Logger LOGGER = Logger.getLogger("gasStation");
+    private static final Logger LOGGER = Logger.getLogger("gasStation");
     public static int resignedCount = 0;
 
     public static void main(String[] args) {
