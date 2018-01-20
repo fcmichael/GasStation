@@ -31,7 +31,7 @@ public class Cash extends BasicSimObj{
     }
 
     public void addToQueue(Car car){
-        cashQueue.add(car);
+        cashQueue.addLast(car);
     }
 
     public boolean isAvailable(){

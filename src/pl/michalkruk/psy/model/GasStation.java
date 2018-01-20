@@ -6,10 +6,11 @@ public class GasStation {
 
     private static final GasStation instance = new GasStation();
     private final SimProperties properties = SimProperties.getInstance();
-    private static Emplacement emplacementLPG;
-    private static Emplacement emplacementON;
-    private static Emplacement emplacementPetrol;
-    private static Cash cash;
+    private Emplacement emplacementLPG;
+    private Emplacement emplacementON;
+    private Emplacement emplacementPetrol;
+    private Cash cash;
+    private CarWash carWash;
 
     private GasStation() {
         emplacementLPG = new Emplacement(
@@ -19,6 +20,7 @@ public class GasStation {
         emplacementPetrol = new Emplacement(
                 Integer.parseInt(properties.get("numOfDistributorsPetrol")), Integer.parseInt(properties.get("queueSizeOfDistributorsPetrol")));
         cash = new Cash(Integer.parseInt(properties.get("numOfCashes")));
+        carWash = new CarWash();
     }
 
     public static GasStation getInstance() {
@@ -43,5 +45,9 @@ public class GasStation {
 
     public Cash getCash() {
         return cash;
+    }
+
+    public CarWash getCarWash() {
+        return carWash;
     }
 }
