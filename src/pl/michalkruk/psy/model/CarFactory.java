@@ -11,7 +11,7 @@ public class CarFactory {
 
     public static Car generateCar(double arrivingAtStationTime) {
         id++;
-        GasStationService service = randomizeService();
+        GasStation.Service service = randomizeService();
         boolean fuelWill = false;
         boolean washWill = false;
 
@@ -37,25 +37,25 @@ public class CarFactory {
         }
     }
 
-    private static GasType randomizeFuel() {
+    private static GasStation.GasType randomizeFuel() {
         double x = SimGeneratorFactory.get(SimProperties.getInstance().get("gasChooseDistribution"));
         if (x <= 0.33) {
-            return GasType.PETROL;
+            return GasStation.GasType.PETROL;
         } else if (x <= 0.66) {
-            return GasType.LPG;
+            return GasStation.GasType.LPG;
         } else {
-            return GasType.ON;
+            return GasStation.GasType.ON;
         }
     }
 
-    private static GasStationService randomizeService() {
+    private static GasStation.Service randomizeService() {
         double x = SimGeneratorFactory.get(SimProperties.getInstance().get("serviceChooseDistribution"));
         if (x <= 0.33) {
-            return GasStationService.FUEL;
+            return GasStation.Service.FUEL;
         } else if (x <= 0.66) {
-            return GasStationService.WASH;
+            return GasStation.Service.WASH;
         } else {
-            return GasStationService.WASH_AND_FUEL;
+            return GasStation.Service.WASH_AND_FUEL;
         }
     }
 

@@ -4,6 +4,23 @@ import pl.michalkruk.psy.SimProperties;
 
 public class GasStation {
 
+    public enum Service {
+        WASH,
+        FUEL,
+        WASH_AND_FUEL
+    }
+
+    public enum GasType {
+        LPG,
+        ON,
+        PETROL;
+
+        @Override
+        public String toString() {
+            return this.name();
+        }
+    }
+
     private static final GasStation instance = new GasStation();
     private final SimProperties properties = SimProperties.getInstance();
     private Emplacement emplacementLPG;
@@ -27,7 +44,7 @@ public class GasStation {
         return instance;
     }
 
-    public Emplacement getEmplacementBasedOnGasType(GasType gasType) {
+    public Emplacement getEmplacementBasedOnGasType(GasStation.GasType gasType) {
         Emplacement emplacement = null;
         switch (gasType) {
             case LPG:

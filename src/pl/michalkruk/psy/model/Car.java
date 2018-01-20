@@ -12,11 +12,11 @@ public class Car extends BasicSimObj {
     private int id;
     private boolean fuelWill;
     private boolean washWill;
-    private GasType gasType;
+    private GasStation.GasType gasType;
     private double arrivingAtStationTime;
     private double leavingDistributorTime;
 
-    Car(int id, boolean fuelWill, boolean washWill, GasType gasType, double arrivingAtStationTime) {
+    Car(int id, boolean fuelWill, boolean washWill, GasStation.GasType gasType, double arrivingAtStationTime) {
         this.id = id;
         this.fuelWill = fuelWill;
         this.washWill = washWill;
