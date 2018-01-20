@@ -8,8 +8,6 @@ import pl.michalkruk.psy.SimProperties;
 import pl.michalkruk.psy.model.Car;
 import pl.michalkruk.psy.model.Emplacement;
 
-import java.math.BigDecimal;
-
 class CarStartFuellingEvent extends BasicSimEvent<Emplacement, Car>{
 
     private Emplacement emplacement;
