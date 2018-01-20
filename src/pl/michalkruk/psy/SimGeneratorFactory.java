@@ -1,4 +1,4 @@
-package pl.michalkruk;
+package pl.michalkruk.psy;
 
 import dissimlab.random.SimGenerator;
 

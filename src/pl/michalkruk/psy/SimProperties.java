@@ -1,4 +1,4 @@
-package pl.michalkruk;
+package pl.michalkruk.psy;
 
 import java.io.FileInputStream;
 import java.io.IOException;
