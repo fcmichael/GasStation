@@ -22,7 +22,11 @@ class CarEndFuellingEvent extends BasicSimEvent<Emplacement, Car> {
     @Override
     protected void stateChange() throws SimControlException {
         emplacement.stopFuelling();
+
+        SimApplication.fuellingTime.setValue(simTime() - car.getArrivingAtStationTime());
         SimApplication.logMessage("Koniec tankowania samochodu nr " + car.getId(), simTime());
+
+        car.setLeavingDistributorTime(simTime());
 
         // Zaplanuj dalsza obsluge
         if(emplacement.getDistributorsQueue().size() > 0){

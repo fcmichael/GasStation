@@ -9,16 +9,19 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Car extends BasicSimObj {
-    private int id = 0;
+    private int id;
     private boolean fuelWill;
     private boolean washWill;
     private GasType gasType;
+    private double arrivingAtStationTime;
+    private double leavingDistributorTime;
 
-    Car(int id, boolean fuelWill, boolean washWill, GasType gasType) {
+    Car(int id, boolean fuelWill, boolean washWill, GasType gasType, double arrivingAtStationTime) {
         this.id = id;
         this.fuelWill = fuelWill;
         this.washWill = washWill;
         this.gasType = gasType;
+        this.arrivingAtStationTime = arrivingAtStationTime;
     }
 
     @Override

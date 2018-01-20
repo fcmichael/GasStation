@@ -4,6 +4,7 @@ import dissimlab.broker.INotificationEvent;
 import dissimlab.broker.IPublisher;
 import dissimlab.simcore.BasicSimObj;
 import lombok.Getter;
+import pl.michalkruk.psy.SimApplication;
 
 import java.util.LinkedList;
 
@@ -22,7 +23,9 @@ public class CarWash extends BasicSimObj{
 
     public Car startWashing(){
         free = false;
-        return carWashQueue.removeFirst();
+        Car car = carWashQueue.removeFirst();
+        SimApplication.carsInQueues.setValue(carWashQueue.size());
+        return car;
     }
 
     public void stopWashing(){
@@ -31,6 +34,7 @@ public class CarWash extends BasicSimObj{
 
     public void addToQueue(Car car){
         carWashQueue.addLast(car);
+        SimApplication.carsInQueues.setValue(carWashQueue.size());
     }
 
     @Override

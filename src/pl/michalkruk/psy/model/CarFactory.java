@@ -1,13 +1,15 @@
 package pl.michalkruk.psy.model;
 
+import lombok.Getter;
 import pl.michalkruk.psy.SimGeneratorFactory;
 import pl.michalkruk.psy.SimProperties;
 
 public class CarFactory {
 
+    @Getter
     private static int id = 0;
 
-    public static Car generateCar() {
+    public static Car generateCar(double arrivingAtStationTime) {
         id++;
         GasStationService service = randomizeService();
         boolean fuelWill = false;
@@ -29,9 +31,9 @@ public class CarFactory {
         }
 
         if(fuelWill){
-            return new Car(id, true, washWill, randomizeFuel());
+            return new Car(id, true, washWill, randomizeFuel(), arrivingAtStationTime);
         } else {
-            return new Car(id, false, true, null);
+            return new Car(id, false, true, null, arrivingAtStationTime);
         }
     }
 
@@ -55,5 +57,9 @@ public class CarFactory {
         } else {
             return GasStationService.WASH_AND_FUEL;
         }
+    }
+
+    public static int getCarsCount(){
+        return id-1;
     }
 }

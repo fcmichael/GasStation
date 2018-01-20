@@ -22,8 +22,12 @@ class CarEndWashingEvent extends BasicSimEvent<CarWash, Car> {
         carWash.stopWashing();
         SimApplication.logMessage("Koniec mycia samochodu nr " + car.getId(), simTime());
 
+        if (car.isFuelWill()) {
+            SimApplication.washingTime.setValue(simTime() - car.getLeavingDistributorTime());
+        }
+
         // Zaplanuj dalsza obsluge
-        if(carWash.getCarWashQueue().size() > 0){
+        if (carWash.getCarWashQueue().size() > 0) {
             new CarStartWashingEvent(carWash);
         }
     }

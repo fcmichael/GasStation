@@ -4,6 +4,7 @@ import dissimlab.broker.INotificationEvent;
 import dissimlab.broker.IPublisher;
 import dissimlab.simcore.BasicSimObj;
 import lombok.Getter;
+import pl.michalkruk.psy.SimApplication;
 
 public class Emplacement extends BasicSimObj {
 
@@ -21,7 +22,9 @@ public class Emplacement extends BasicSimObj {
 
     public Car startFuelling(){
         currentlyFuelling++;
-        return distributorsQueue.removeFirst();
+        Car car = distributorsQueue.removeFirst();
+        SimApplication.carsInQueues.setValue(distributorsQueue.size());
+        return car;
     }
 
     public void stopFuelling(){
@@ -29,7 +32,9 @@ public class Emplacement extends BasicSimObj {
     }
 
     public boolean addToQueue(Car car){
-        return distributorsQueue.add(car);
+        boolean result = distributorsQueue.add(car);
+        SimApplication.carsInQueues.setValue(distributorsQueue.size());
+        return result;
     }
 
     public boolean isAvailable(){

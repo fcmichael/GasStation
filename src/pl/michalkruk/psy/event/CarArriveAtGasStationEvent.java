@@ -32,6 +32,7 @@ public class CarArriveAtGasStationEvent extends BasicSimEvent<Car, Object> {
 
             } else {
                 SimApplication.resignedCount++;
+                SimApplication.logMessage("Rezygnacja z tankowania samochodu nr " + car.getId(), simTime());
             }
         } else {
             Cash cash = gasStation.getCash();
@@ -44,7 +45,7 @@ public class CarArriveAtGasStationEvent extends BasicSimEvent<Car, Object> {
         }
 
 
-        new CarArriveAtGasStationEvent(CarFactory.generateCar(),
+        new CarArriveAtGasStationEvent(CarFactory.generateCar(simTime()),
                 SimGeneratorFactory.get(SimProperties.getInstance().get("arrivalDistribution")));
     }
 
