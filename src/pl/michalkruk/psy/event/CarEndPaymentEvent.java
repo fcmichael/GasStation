@@ -4,7 +4,9 @@ import dissimlab.simcore.BasicSimEvent;
 import dissimlab.simcore.SimControlException;
 import pl.michalkruk.psy.SimApplication;
 import pl.michalkruk.psy.model.Car;
+import pl.michalkruk.psy.model.CarWash;
 import pl.michalkruk.psy.model.Cash;
+import pl.michalkruk.psy.model.GasStation;
 
 class CarEndPaymentEvent extends BasicSimEvent<Cash, Car> {
 
@@ -28,7 +30,12 @@ class CarEndPaymentEvent extends BasicSimEvent<Cash, Car> {
         }
 
         if(car.isWashWill()){
-            // wash
+            CarWash carWash = GasStation.getInstance().getCarWash();
+            carWash.addToQueue(car);
+
+            if(carWash.getCarWashQueue().size() == 1 && carWash.isFree()){
+                new CarStartWashingEvent(carWash);
+            }
         }
     }
 

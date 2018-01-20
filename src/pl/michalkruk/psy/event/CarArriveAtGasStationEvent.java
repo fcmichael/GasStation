@@ -7,9 +7,9 @@ import pl.michalkruk.psy.SimGeneratorFactory;
 import pl.michalkruk.psy.SimProperties;
 import pl.michalkruk.psy.model.*;
 
-public class CarArriveAtGasStation extends BasicSimEvent<Car, Object> {
+public class CarArriveAtGasStationEvent extends BasicSimEvent<Car, Object> {
 
-    public CarArriveAtGasStation(Car car, double delay) throws SimControlException {
+    public CarArriveAtGasStationEvent(Car car, double delay) throws SimControlException {
         super(car, delay);
     }
 
@@ -44,7 +44,7 @@ public class CarArriveAtGasStation extends BasicSimEvent<Car, Object> {
         }
 
 
-        new CarArriveAtGasStation(CarFactory.generateCar(),
+        new CarArriveAtGasStationEvent(CarFactory.generateCar(),
                 SimGeneratorFactory.get(SimProperties.getInstance().get("arrivalDistribution")));
     }
 

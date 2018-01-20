@@ -4,7 +4,7 @@ import dissimlab.simcore.SimControlEvent;
 import dissimlab.simcore.SimControlException;
 import dissimlab.simcore.SimManager;
 import dissimlab.simcore.SimParameters;
-import pl.michalkruk.psy.event.CarArriveAtGasStation;
+import pl.michalkruk.psy.event.CarArriveAtGasStationEvent;
 import pl.michalkruk.psy.model.CarFactory;
 
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class SimApplication {
         }
 
         try {
-            new CarArriveAtGasStation(CarFactory.generateCar(), 0.0);
+            new CarArriveAtGasStationEvent(CarFactory.generateCar(), 0.0);
             new SimControlEvent(1000.0, SimParameters.SimControlStatus.STOPSIMULATION);
             simManager.startSimulation();
         } catch (SimControlException e) {
