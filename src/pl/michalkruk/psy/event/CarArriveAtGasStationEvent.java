@@ -44,9 +44,8 @@ public class CarArriveAtGasStationEvent extends BasicSimEvent<Car, Object> {
             }
         }
 
-
-        new CarArriveAtGasStationEvent(CarFactory.generateCar(simTime()),
-                SimGeneratorFactory.get(SimProperties.getInstance().get("arrivalDistribution")));
+        double arrivingDelay = SimGeneratorFactory.get(SimProperties.getInstance().get("arrivalDistribution"));
+        new CarArriveAtGasStationEvent(CarFactory.generateCar(simTime() + arrivingDelay), arrivingDelay);
     }
 
     @Override

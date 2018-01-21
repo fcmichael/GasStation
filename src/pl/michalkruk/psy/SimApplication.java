@@ -24,7 +24,8 @@ public class SimApplication {
         SimManager simManager = SimManager.getInstance();
 
         try {
-            new CarArriveAtGasStationEvent(CarFactory.generateCar(0.0), 0.0);
+            double arrivingDelay = SimGeneratorFactory.get(SimProperties.getInstance().get("arrivalDistribution"));
+            new CarArriveAtGasStationEvent(CarFactory.generateCar(arrivingDelay), arrivingDelay);
             new SimControlEvent(Double.parseDouble(SimProperties.getInstance().get("simulationTime")), SimParameters.SimControlStatus.STOPSIMULATION);
             simManager.startSimulation();
         } catch (SimControlException e) {
