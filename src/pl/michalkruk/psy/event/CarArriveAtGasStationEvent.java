@@ -24,7 +24,7 @@ public class CarArriveAtGasStationEvent extends BasicSimEvent<Car, Object> {
             Emplacement emplacement = gasStation.getEmplacementBasedOnGasType(car.getGasType());
 
             if (emplacement.addToQueue(car)) {
-
+                SimApplication.getSimulationPanel().getDistributorsQueuesLine().addCar(car.getId(), car.getGasType());
                 // Aktywuj obsluge, jezeli kolejka byla pusta (gniazdo "spalo")
                 if (emplacement.getDistributorsQueue().size() == 1 && emplacement.isAvailable()) {
                     new CarStartFuellingEvent(emplacement);
@@ -37,6 +37,7 @@ public class CarArriveAtGasStationEvent extends BasicSimEvent<Car, Object> {
         } else {
             Cash cash = gasStation.getCash();
             cash.addToQueue(car);
+            SimApplication.getSimulationPanel().getCashQueue().addCar(car.getId());
 
             // Aktywuj obsluge, jezeli kolejka byla pusta (gniazdo "spalo")
             if (cash.getCashQueue().size() == 1 && cash.isAvailable()) {

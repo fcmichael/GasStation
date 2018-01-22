@@ -6,6 +6,8 @@ import dissimlab.simcore.BasicSimObj;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.awt.*;
+
 @Setter
 @Getter
 public class Car extends BasicSimObj {
@@ -15,13 +17,15 @@ public class Car extends BasicSimObj {
     private GasStation.GasType gasType;
     private double arrivingAtStationTime;
     private double leavingDistributorTime;
+    private Color color;
 
-    Car(int id, boolean fuelWill, boolean washWill, GasStation.GasType gasType, double arrivingAtStationTime) {
+    Car(int id, boolean fuelWill, boolean washWill, GasStation.GasType gasType, double arrivingAtStationTime, Color color) {
         this.id = id;
         this.fuelWill = fuelWill;
         this.washWill = washWill;
         this.gasType = gasType;
         this.arrivingAtStationTime = arrivingAtStationTime;
+        this.color = color;
     }
 
     @Override

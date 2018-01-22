@@ -21,6 +21,8 @@ class CarStartWashingEvent extends BasicSimEvent<CarWash, Car>{
     protected void stateChange() throws SimControlException {
         if(carWash.getCarWashQueue().size() > 0){
             Car car = carWash.startWashing();
+            SimApplication.getSimulationPanel().getCarWashQueue().removeCar();
+            SimApplication.getSimulationPanel().getCarWash().setCar(car.getId());
             SimApplication.logMessage("Rozpoczecie mycia samochodu nr " + car.getId(), simTime());
             double washingTime = SimGeneratorFactory.get(SimProperties.getInstance().get("washDistribution"));
             new CarEndWashingEvent(carWash, washingTime, car);

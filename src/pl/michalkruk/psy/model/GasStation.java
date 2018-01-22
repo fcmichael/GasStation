@@ -23,11 +23,11 @@ public class GasStation {
 
     private static final GasStation instance = new GasStation();
     private final SimProperties properties = SimProperties.getInstance();
-    private Emplacement emplacementLPG;
-    private Emplacement emplacementON;
-    private Emplacement emplacementPetrol;
-    private Cash cash;
-    private CarWash carWash;
+    private final Emplacement emplacementLPG;
+    private final Emplacement emplacementON;
+    private final Emplacement emplacementPetrol;
+    private final Cash cash;
+    private final CarWash carWash;
 
     private GasStation() {
         emplacementLPG = new Emplacement(

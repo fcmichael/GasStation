@@ -18,8 +18,11 @@ class CarStartPaymentEvent extends BasicSimEvent<Cash, Object> {
 
     @Override
     protected void stateChange() throws SimControlException {
-        if(cash.getCashQueue().size() > 0){
+        if (cash.getCashQueue().size() > 0) {
             Car car = cash.startPayment();
+            SimApplication.getSimulationPanel().getCashQueue().removeCar();
+            SimApplication.getSimulationPanel().getCashesLine().addCar(car.getId());
+
             SimApplication.logMessage("Rozpoczecie placenia przez samochod nr " + car.getId(), simTime());
             double paymentTime = SimGeneratorFactory.get(SimProperties.getInstance().get("paymentDistribution"));
             new CarEndPaymentEvent(cash, paymentTime, car);

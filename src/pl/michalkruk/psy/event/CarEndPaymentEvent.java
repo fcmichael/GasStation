@@ -22,6 +22,7 @@ class CarEndPaymentEvent extends BasicSimEvent<Cash, Car> {
     @Override
     protected void stateChange() throws SimControlException {
         cash.stopPayment();
+        SimApplication.getSimulationPanel().getCashesLine().removeCar(car.getId());
         SimApplication.logMessage("Koniec placenia przez samochod nr " + car.getId(), simTime());
 
         // Zaplanuj dalsza obsluge
@@ -32,6 +33,7 @@ class CarEndPaymentEvent extends BasicSimEvent<Cash, Car> {
         if(car.isWashWill()){
             CarWash carWash = GasStation.getInstance().getCarWash();
             carWash.addToQueue(car);
+            SimApplication.getSimulationPanel().getCarWashQueue().addCar(car.getId());
 
             if(carWash.getCarWashQueue().size() == 1 && carWash.isFree()){
                 new CarStartWashingEvent(carWash);

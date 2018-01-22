@@ -20,6 +20,7 @@ class CarEndWashingEvent extends BasicSimEvent<CarWash, Car> {
     @Override
     protected void stateChange() throws SimControlException {
         carWash.stopWashing();
+        SimApplication.getSimulationPanel().getCarWash().removeCar();
         SimApplication.logMessage("Koniec mycia samochodu nr " + car.getId(), simTime());
 
         if (car.isFuelWill()) {

@@ -21,6 +21,8 @@ class CarStartFuellingEvent extends BasicSimEvent<Emplacement, Car>{
     protected void stateChange() throws SimControlException {
         if(emplacement.getDistributorsQueue().size() > 0){
             Car car = emplacement.startFuelling();
+            SimApplication.getSimulationPanel().getDistributorsQueuesLine().removeCar(car.getGasType());
+            SimApplication.getSimulationPanel().getDistributorsLine().addCar(car.getId(), car.getGasType());
             SimApplication.logMessage("Rozpoczecie tankowania samochodu nr " + car.getId(), simTime());
             String gasType = car.getGasType().toString();
             double fuellingTime = SimGeneratorFactory.get(SimProperties.getInstance().get("fuelling" + gasType + "Distribution"));

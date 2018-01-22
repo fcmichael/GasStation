@@ -9,6 +9,8 @@ import dissimlab.simcore.SimParameters;
 import org.apache.log4j.Logger;
 import pl.michalkruk.psy.event.CarArriveAtGasStationEvent;
 import pl.michalkruk.psy.model.CarFactory;
+import pl.michalkruk.psy.visualization.SimulationFrame;
+import pl.michalkruk.psy.visualization.SimulationPanel;
 
 import java.math.BigDecimal;
 
@@ -19,9 +21,11 @@ public class SimApplication {
     public static final MonitoredVar washingTime = new MonitoredVar();
     public static final MonitoredVar carsInQueues = new MonitoredVar();
     public static int resignedCount = 0;
+    private static SimulationFrame simulationFrame;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SimManager simManager = SimManager.getInstance();
+        simulationFrame = new SimulationFrame();
 
         try {
             double arrivingDelay = SimGeneratorFactory.get(SimProperties.getInstance().get("arrivalDistribution"));
@@ -52,5 +56,14 @@ public class SimApplication {
         return BigDecimal.valueOf(simTime)
                 .setScale(3, BigDecimal.ROUND_UP)
                 .doubleValue();
+    }
+
+    public static SimulationPanel getSimulationPanel(){
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return simulationFrame.getContent();
     }
 }
